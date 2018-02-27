@@ -1,0 +1,39 @@
+@import url("../font-icon/iconfont.css");
+ul{list-style: none;}
+    .myTree{
+    	padding: 0;
+    	color:#333;
+    	font-size: 12px;
+	    font-family: 'å®‹ä½“';
+    }
+    .myTree .mytree-header{  
+    	font-size: 14px;
+        font-family: 'å®‹ä½“ Bold', 'å®‹ä½“ å¸¸è§„', 'å®‹ä½“';
+	    font-weight: 700;
+	    font-style: normal;
+	    color: #999999;
+	}
+    .myTree .treeNode{
+    	display: flex;
+    }
+    .myTree .treeNode span{vertical-align: middle;box-sizing: border-box;text-align: center;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;height: 40px;line-height: 40px;padding: 0 10px;}
+    .myTree .treeNode span:first-child{text-align: left;}
+    .myTree .treeNode .icon-wrap{line-height: 40px;}
+    .myTree .treeNode .icon-wrap+span{padding: 0 0 0 5px;
+    	font-family: 'å®‹ä½“ Bold', 'å®‹ä½“ å¸¸è§„', 'å®‹ä½“';
+	    font-weight: 700;
+	    font-size: 13px;
+	}
+	.myTree>.treeNode>.icon-wrap+span{
+		font-size: 14px;
+	}
+	.myTree .treeNode span.priority.state1{color: #FF0000;}
+	.myTree .treeNode span.priority.state2{color: #FFCC00;}
+	.myTree .treeNode span.priority.state3{color: #999999;}
+	.myTree .treeNode span.blue{color: #649AE0;}
+	.myTree .treeNode .del{display: inline-block;
+	    color: #4891E7;
+	    font-size: 12px;
+	    cursor: pointer;
+    }
+    /*end--ztreeè¡¨æ ¼*/

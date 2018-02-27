@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> ZTREE DEMO - radio select menu</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="demo.css"/>
+	<link href="https://cdn.bootcss.com/zTree.v3/3.5.29/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/zTree.v3/3.5.29/js/jquery.ztree.all.min.js"></script>
+    <script src="demoData.js" type="text/javascript" charset="utf-8"></script>
+	<SCRIPT type="text/javascript">
+		
+		var setting = {
+			check: {
+				enable: true,
+				chkStyle: "radio",
+				radioType: "all"
+			},
+			view: {
+				dblClickExpand: false
+			},
+			data: {
+				simpleData: {
+					enable: true,
+					idkey:'libraryId'
+				},
+				key: {
+	            	name:"libraryName",
+	            	children:'childrenLibrary',
+	            }
+			},
+			callback: {
+				onClick: onClick,
+				onCheck: onCheck
+			}
+		};
+
+		var zNodes = tree;
+
+		function onClick(e, treeId, treeNode) {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.checkNode(treeNode, !treeNode.checked, null, true);
+			return false;
+		}
+
+		function onCheck(e, treeId, treeNode) {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+			nodes = zTree.getCheckedNodes(true),
+			v = "";
+			for (var i=0, l=nodes.length; i<l; i++) {
+				v += nodes[i].libraryName + ",";
+			}
+			if (v.length > 0 ) v = v.substring(0, v.length-1);
+			var cityObj = $("#citySel");
+			cityObj.attr("value", v);
+		}
+
+		function showMenu() {
+			var cityObj = $("#citySel");
+			var cityOffset = $("#citySel").offset();
+			$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+
+			$("body").bind("mousedown", onBodyDown);
+		}
+		function hideMenu() {
+			$("#menuContent").fadeOut("fast");
+			$("body").unbind("mousedown", onBodyDown);
+		}
+		function onBodyDown(event) {
+			if (!(event.target.id == "menuBtn" || event.target.id == "citySel" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+				hideMenu();
+			}
+		}
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+	</SCRIPT>
+	<style type="text/css">
+	</style>
+ </HEAD>
+
+<BODY>
+<h1>带 radio 的单选下拉菜单  -- zTree</h1>
+<h6>[ 文件路径: super/select_menu_radio.html ]</h6>
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul class="list">
+			<li class="title">&nbsp;&nbsp;<span class="highlight_red">勾选 radio 或者 点击节点 进行选择</span></li>
+			<li class="title">&nbsp;&nbsp;Test: <input id="citySel" type="text" readonly value="" style="width:120px;" onclick="showMenu();" />
+		&nbsp;<a id="menuBtn" href="#" onclick="showMenu(); return false;">select</a></li>
+		</ul>
+	</div>
+	<div class="right">
+		<ul class="info">
+			<li class="title"><h2>实现方法说明</h2>
+				<ul class="list">
+				<li>用 radio 也可以轻松实现单选的下拉菜单</li>
+				<li>单选其实没有必要使用 radio, 此 Demo 主要用于 和 其他下拉菜单进行对比</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+	<ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
+</div>
+</BODY>
+</HTML>

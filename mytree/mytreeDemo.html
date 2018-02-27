@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo by dq</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=11;IE=10;IE=9;IE=8;"/>
+    <link rel="stylesheet" type="text/css" href="css/mytree.css"/>
+	
+</head>
+
+<body>
+<div class="layer">
+    <ul id="tree" class="myTree">
+    </ul>
+</div>
+<script src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/demoData.js"></script>
+<script type="text/javascript" src="js/mytree.js"></script>
+<script type="text/javascript">
+	titles=[
+		{
+			title:'任务标题',
+			width:'auto',
+			name:'name'
+		},
+		{
+			title:'编号',
+			width:'100px',
+			name:'code'
+		},{
+			title:'责任人',
+			width:'100px',
+			name:'leader'
+		},{
+			title:'参与人',
+			width:'150px',
+			name:'partner'
+		},{
+			title:'优先级',
+			width:'100px',
+			name:'priority'
+		},{
+			title:'计划时间',
+			width:'200px',
+			name:'deadline'
+		},{
+			title:'任务状态',
+			width:'100px',
+			name:'state'
+		}
+	]
+treeHead($("#tree"),titles)
+treeFor($("#tree"),tree,titles,true)
+</script>
+</body>
+</html>
